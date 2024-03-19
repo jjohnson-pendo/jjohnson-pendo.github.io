@@ -114,9 +114,12 @@ body {
 
 // Primary button styles
 .ant-btn-primary {
-  background-color: rgba(18, 130, 151, 1) !important;
-  border-color: $primary-color-dark !important;
-  border-radius: 3px !important;
+  //background-color: rgba(18, 130, 151, 1) !important;
+  //border-color: $primary-color-dark !important;
+  //border-radius: 3px !important;
+    border-color: #52de0e !important;
+    border-radius: 14px !important;
+    background-color: #e92f27 !important;
 }
 
 // Footer heart icon
