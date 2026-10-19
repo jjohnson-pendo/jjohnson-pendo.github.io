@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 import {
   Input,
   Button,
@@ -9,25 +9,25 @@ import {
   Avatar,
   Popover,
   Icon,
-} from 'antd';
-import { withRouter } from 'react-router-dom';
-import { requestOpportunitiesData } from '../../actions/opportunitiesActions';
+} from "antd";
+import { withRouter } from "react-router-dom";
+import { requestOpportunitiesData } from "../../actions/opportunitiesActions";
 
-import './vertical-menu.scss';
+import "./vertical-menu.scss";
 
 const Search = Input.Search;
 const Option = Select.Option;
 const FormItem = Form.Item;
 
 const fieldTwoList = {
-  Accounts: 'Rep: ',
-  Contacts: 'Email: ',
-  Opportunities: 'Contact: ',
+  Accounts: "Rep: ",
+  Contacts: "Email: ",
+  Opportunities: "Contact: ",
 };
 const fieldThreeList = {
-  Accounts: 'Territory: ',
-  Contacts: 'Phone #: ',
-  Opportunities: 'ARR: ',
+  Accounts: "Territory: ",
+  Contacts: "Phone #: ",
+  Opportunities: "ARR: ",
 };
 
 const userProfileContent = (
@@ -45,17 +45,17 @@ const userProfileContent = (
     <tbody>
       <tr>
         <td>Visitor:</td>
-        <td style={{ width: '10px' }}></td>
+        <td style={{ width: "10px" }}></td>
         <td>{window.userInfo.visitor}</td>
       </tr>
       <tr>
         <td>Account:</td>
-        <td style={{ width: '10px' }}></td>
+        <td style={{ width: "10px" }}></td>
         <td>{window.userInfo.account}</td>
       </tr>
       <tr>
         <td>Role:</td>
-        <td style={{ width: '10px' }}></td>
+        <td style={{ width: "10px" }}></td>
         <td>{window.userInfo.role}</td>
       </tr>
     </tbody>
@@ -63,7 +63,7 @@ const userProfileContent = (
 );
 
 const ShowHeader = function (props) {
-  if (props.title === 'Mobile') {
+  if (props.title === "Mobile") {
     return null;
   }
 
@@ -86,10 +86,10 @@ class Body extends React.Component {
       visible: false,
       loading: false,
       addNewFormData: {
-        value: 'Accounts',
-        fieldOne: '',
-        fieldTwo: '',
-        fieldThree: '',
+        value: "Accounts",
+        fieldOne: "",
+        fieldTwo: "",
+        fieldThree: "",
       },
     };
   }
@@ -102,12 +102,12 @@ class Body extends React.Component {
     const path = window.location.pathname;
     const addNewFormData = Object.assign({}, this.state.addNewFormData);
 
-    if (path.includes('accounts')) {
-      addNewFormData['value'] = 'Accounts';
-    } else if (path.includes('contacts')) {
-      addNewFormData['value'] = 'Contacts';
+    if (path.includes("accounts")) {
+      addNewFormData["value"] = "Accounts";
+    } else if (path.includes("contacts")) {
+      addNewFormData["value"] = "Contacts";
     } else {
-      addNewFormData['value'] = 'Opportunities';
+      addNewFormData["value"] = "Opportunities";
     }
 
     this.setState({
@@ -136,13 +136,23 @@ class Body extends React.Component {
 
       // Set local Storage objs
       localStorage.setItem(
-        'addNewFormData',
+        "addNewFormData",
         JSON.stringify(this.state.addNewFormData)
       );
-      localStorage.setItem('loading', false);
+      localStorage.setItem("loading", false);
+
+      // Track record creation
+      if (typeof pendo !== "undefined") {
+        pendo.track("Record Created", {
+          recordType: this.state.addNewFormData.value,
+          recordName: this.state.addNewFormData.fieldOne,
+          fieldTwoValue: this.state.addNewFormData.fieldTwo,
+          fieldThreeValue: this.state.addNewFormData.fieldThree,
+        });
+      }
 
       this.props.history.push({
-        pathname: this.state.addNewFormData.value + '/new/details',
+        pathname: this.state.addNewFormData.value + "/new/details",
         state: {
           field1: this.state.addNewFormData,
         },
@@ -153,7 +163,7 @@ class Body extends React.Component {
   // Change <select> <option> value and set State
   _onHandleSelectChange(value) {
     let addNewFormData = Object.assign({}, this.state.addNewFormData);
-    addNewFormData['value'] = value;
+    addNewFormData["value"] = value;
     this.setState({
       addNewFormData,
     });
@@ -182,7 +192,17 @@ class Body extends React.Component {
               name="search"
               placeholder="Search"
               enterButton
-              onSearch={(value) => console.log(value)}
+              onSearch={(value) => {
+                console.log(value);
+                // Track search execution
+                if (typeof pendo !== "undefined") {
+                  pendo.track("Search Executed", {
+                    searchQuery: value,
+                    currentPage: window.location.pathname,
+                    queryLength: value.length,
+                  });
+                }
+              }}
             />
           </div>
           <div className="vertical-menu-item right avatar-container">
@@ -211,7 +231,7 @@ class Body extends React.Component {
             >
               <img
                 className="help-icon"
-                src={'./images/help-icon.svg'}
+                src={"./images/help-icon.svg"}
                 alt="help-icon"
               ></img>
             </a>
