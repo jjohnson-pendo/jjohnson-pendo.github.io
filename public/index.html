@@ -25,18 +25,18 @@
     <script>
       // Look for service worker that needs to be unregistered to fix caching issue
       if (navigator.serviceWorker) {
-        console.log('Searching for service worker...');
+        console.log("Searching for service worker...");
         navigator.serviceWorker
           .getRegistrations()
           .then((registrations) => {
             for (let registration of registrations) {
-              console.log('Service worker found, attempting unregistration...');
+              console.log("Service worker found, attempting unregistration...");
               registration.unregister();
             }
           })
           .catch((error) => {
             console.log(
-              'Unable to unregister service worker. Failed with error:',
+              "Unable to unregister service worker. Failed with error:",
               error
             );
           });
@@ -45,219 +45,219 @@
     <script>
       // Get URL parameters
       const urlParams = new URLSearchParams(window.location.search);
-      const disablePendo = urlParams.get('disablePendo') === 'true';
-      const urlVisitor = urlParams.get('visitor');
-      const urlAccount = urlParams.get('account');
-      const urlRole = urlParams.get('role');
+      const disablePendo = urlParams.get("disablePendo") === "true";
+      const urlVisitor = urlParams.get("visitor");
+      const urlAccount = urlParams.get("account");
+      const urlRole = urlParams.get("role");
 
       // List of names for date based visitors
       const visitors = [
-        'Michael',
-        'Christopher',
-        'Jessica',
-        'Matthew',
-        'Ashley',
-        'Jennifer',
-        'Joshua',
-        'Amanda',
-        'Daniel',
-        'David',
-        'James',
-        'Robert',
-        'John',
-        'Joseph',
-        'Andrew',
-        'Ryan',
-        'Sarah',
-        'Stephanie',
-        'Rachel',
-        'Erika',
-        'Thomas',
-        'Sonya',
-        'Bill',
-        'Tyrone',
-        'Denise',
-        'Brian',
-        'Adam',
-        'Megan',
-        'Eric',
-        'Elizabeth',
-        'Anthony',
-        'Nicole',
-        'Kevin',
-        'Melissa',
-        'Kevin',
-        'Laura',
-        'Kyle',
-        'Kayla',
-        'Amber',
-        'Richard',
-        'Kim',
-        'Jeff',
-        'Amy',
-        'Michelle',
-        'Benjamin',
-        'Mark',
-        'Emily',
-        'Aaron',
-        'Charles',
-        'Rebecca',
-        'Jamie',
-        'Erin',
-        'Zachary',
-        'Sean',
-        'Mary',
-        'Kelly',
-        'Paul',
-        'Dustin',
-        'Travis',
-        'Gregory',
-        'Andrea',
-        'Angela',
-        'Bryan',
-        'Shane',
-        'Todd',
-        'George',
-        'Phillip',
-        'Stacy',
-        'Joanna',
-        'Jasmine',
-        'Brooke',
-        'Felicity',
-        'Tony',
-        'Nancy',
-        'Kate',
-        'Jillian',
-        'Jerry',
-        'Luke',
-        'Maria',
-        'Cody',
-        'Allison',
-        'Peter',
-        'Jordan',
-        'Natalie',
-        'Holly',
-        'Jared',
-        'Anna',
-        'Caroline',
-        'Amalia',
-        'Donald',
-        'Micah',
-        'Marvin',
-        'Levi',
-        'Brad',
-        'Taryn',
-        'Toni',
-        'Jessie',
-        'Ronnie',
-        'Ruth',
-        'Adriana',
-        'Darryl',
-        'Mayra',
-        'Ralph',
-        'Elena',
-        'Anita',
-        'Jane',
-        'Simon',
-        'Eli',
-        'Quentin',
-        'Collin',
-        'Dallas',
-        'Lamar',
-        'Lebron',
-        'Francisco',
-        'DwayneTheRock',
-        'Rudy',
-        'Rosemary',
-        'Marlin',
-        'Dory',
-        'Glen',
-        'Dipper',
+        "Michael",
+        "Christopher",
+        "Jessica",
+        "Matthew",
+        "Ashley",
+        "Jennifer",
+        "Joshua",
+        "Amanda",
+        "Daniel",
+        "David",
+        "James",
+        "Robert",
+        "John",
+        "Joseph",
+        "Andrew",
+        "Ryan",
+        "Sarah",
+        "Stephanie",
+        "Rachel",
+        "Erika",
+        "Thomas",
+        "Sonya",
+        "Bill",
+        "Tyrone",
+        "Denise",
+        "Brian",
+        "Adam",
+        "Megan",
+        "Eric",
+        "Elizabeth",
+        "Anthony",
+        "Nicole",
+        "Kevin",
+        "Melissa",
+        "Kevin",
+        "Laura",
+        "Kyle",
+        "Kayla",
+        "Amber",
+        "Richard",
+        "Kim",
+        "Jeff",
+        "Amy",
+        "Michelle",
+        "Benjamin",
+        "Mark",
+        "Emily",
+        "Aaron",
+        "Charles",
+        "Rebecca",
+        "Jamie",
+        "Erin",
+        "Zachary",
+        "Sean",
+        "Mary",
+        "Kelly",
+        "Paul",
+        "Dustin",
+        "Travis",
+        "Gregory",
+        "Andrea",
+        "Angela",
+        "Bryan",
+        "Shane",
+        "Todd",
+        "George",
+        "Phillip",
+        "Stacy",
+        "Joanna",
+        "Jasmine",
+        "Brooke",
+        "Felicity",
+        "Tony",
+        "Nancy",
+        "Kate",
+        "Jillian",
+        "Jerry",
+        "Luke",
+        "Maria",
+        "Cody",
+        "Allison",
+        "Peter",
+        "Jordan",
+        "Natalie",
+        "Holly",
+        "Jared",
+        "Anna",
+        "Caroline",
+        "Amalia",
+        "Donald",
+        "Micah",
+        "Marvin",
+        "Levi",
+        "Brad",
+        "Taryn",
+        "Toni",
+        "Jessie",
+        "Ronnie",
+        "Ruth",
+        "Adriana",
+        "Darryl",
+        "Mayra",
+        "Ralph",
+        "Elena",
+        "Anita",
+        "Jane",
+        "Simon",
+        "Eli",
+        "Quentin",
+        "Collin",
+        "Dallas",
+        "Lamar",
+        "Lebron",
+        "Francisco",
+        "DwayneTheRock",
+        "Rudy",
+        "Rosemary",
+        "Marlin",
+        "Dory",
+        "Glen",
+        "Dipper",
       ];
 
       // List of possible roles
-      const roles = ['user', 'admin', 'read-only'];
+      const roles = ["user", "admin", "read-only"];
 
       // List of accounts for date based visitors
       const accounts = [
-        'Soylent Corp',
-        'Wonka Industries',
-        'Dharma Initiative',
-        'Waynes World',
-        'Parker Industries',
-        'Oceanic',
-        'Rearden Steal',
-        'InGen',
-        'Oscorp',
-        'Purrada',
-        'Rent A Swag',
-        'Space Y',
-        'Pixel Arts',
-        'Vinepoly',
-        'Cloudworks',
-        'Chief Aviation',
-        'Sphere Co',
-        'Altair Corp',
-        'Vega Corp',
-        'Deneb Corp',
-        'Shade Arts',
-        'Lion Security',
-        'Jupiter Brews',
-        'Jetlife',
-        'Herolutions',
-        'Sphinx Solutions',
-        'WhiteBox Inc',
-        'Rosefly',
-        'Dinoco',
-        'Silver Shamrock',
-        'Bushwood',
-        'HAL Labs',
-        'Mugatu Industries',
-        'Pizza Planet',
-        'Rex Kwan Do',
-        'Macmillan',
-        'Empire Industries',
+        "Soylent Corp",
+        "Wonka Industries",
+        "Dharma Initiative",
+        "Waynes World",
+        "Parker Industries",
+        "Oceanic",
+        "Rearden Steal",
+        "InGen",
+        "Oscorp",
+        "Purrada",
+        "Rent A Swag",
+        "Space Y",
+        "Pixel Arts",
+        "Vinepoly",
+        "Cloudworks",
+        "Chief Aviation",
+        "Sphere Co",
+        "Altair Corp",
+        "Vega Corp",
+        "Deneb Corp",
+        "Shade Arts",
+        "Lion Security",
+        "Jupiter Brews",
+        "Jetlife",
+        "Herolutions",
+        "Sphinx Solutions",
+        "WhiteBox Inc",
+        "Rosefly",
+        "Dinoco",
+        "Silver Shamrock",
+        "Bushwood",
+        "HAL Labs",
+        "Mugatu Industries",
+        "Pizza Planet",
+        "Rex Kwan Do",
+        "Macmillan",
+        "Empire Industries",
       ];
 
       // List of accounts for static visitors
       const oldAccounts = [
-        'Stark Industries',
-        'Wayne Enterprises',
-        'Hooli',
-        'Dunder Mifflin US',
-        'Pied Piper',
-        'Dunder Mifflin EU',
-        'Associated Strategies',
-        'Sterling Cooper',
-        'Ewing Oil',
-        'Prestige Worldwide',
-        'TelAmeriCorp',
-        'TakeOff',
-        'Burnham and Root',
-        'Outer Inc',
-        'One World',
-        'Cadence',
-        'WorryFree Inc',
-        'BlueLine',
-        'Raptor Inc',
-        'Arrowhead',
-        'Moonlight Inc',
-        'BlueRibbon',
-        'LightSpeed',
-        'Imaginary Inc',
-        'Pluto Corp',
-        'Hyperion',
-        'BlackBox Inc',
-        'Eco Focus',
-        'Innovation Arch',
-        'Strat Security',
-        'Inspire Fitness Co',
-        'Candor Corp',
-        'Cogent Data',
-        'Epic Adventure Inc',
-        'Sanguine Skincare',
-        'Vortex Solar',
-        'Admire Arts',
+        "Stark Industries",
+        "Wayne Enterprises",
+        "Hooli",
+        "Dunder Mifflin US",
+        "Pied Piper",
+        "Dunder Mifflin EU",
+        "Associated Strategies",
+        "Sterling Cooper",
+        "Ewing Oil",
+        "Prestige Worldwide",
+        "TelAmeriCorp",
+        "TakeOff",
+        "Burnham and Root",
+        "Outer Inc",
+        "One World",
+        "Cadence",
+        "WorryFree Inc",
+        "BlueLine",
+        "Raptor Inc",
+        "Arrowhead",
+        "Moonlight Inc",
+        "BlueRibbon",
+        "LightSpeed",
+        "Imaginary Inc",
+        "Pluto Corp",
+        "Hyperion",
+        "BlackBox Inc",
+        "Eco Focus",
+        "Innovation Arch",
+        "Strat Security",
+        "Inspire Fitness Co",
+        "Candor Corp",
+        "Cogent Data",
+        "Epic Adventure Inc",
+        "Sanguine Skincare",
+        "Vortex Solar",
+        "Admire Arts",
       ];
 
       // Visitor variables to assign
@@ -270,7 +270,7 @@
       const randomRoll = getRandomArbitrary(0, 3);
       if (randomRoll > 2) {
         account_id = oldAccounts[Math.floor(Math.random() * accounts.length)];
-        accString = account_id.replace(/\s/g, '');
+        accString = account_id.replace(/\s/g, "");
         getVisitorId(accString);
       } else {
         getDateBasedVisitorId();
@@ -288,7 +288,7 @@
         const dayOfWeek = today.getDay();
 
         // Initialize visitorName
-        let visitorName = '';
+        let visitorName = "";
 
         // Based on day of week, assign visitor the appropriate name + date.
         switch (dayOfWeek) {
@@ -392,7 +392,7 @@
             visitorName =
               Satvisitors[Math.floor(Math.random() * Satvisitors.length)];
             visitor = `${visitorName}${dd}@${accString}.com`;
-            role = 'read-only';
+            role = "read-only";
         }
 
         // Set role based on the visitorName index in 'visitors' modded by 3. Use this result to access an element in the 'role' array. Ensures each visitorName always has the same role.
@@ -402,7 +402,7 @@
         account_id = accounts[visitors.indexOf(visitorName) % accounts.length];
 
         // Create account string w /out spaces to append to visitor name
-        accString = account_id.replace(/\s/g, '');
+        accString = account_id.replace(/\s/g, "");
 
         // Append accString to visitor id.
         visitor = `${visitor}${accString}.com`;
@@ -416,25 +416,25 @@
 
         if (randNum < 25) {
           visitor = `visitor1@${accString}.com`;
-          role = 'admin';
+          role = "admin";
         } else if (randNum <= 50) {
           visitor = `visitor6@${accString}.com`;
-          role = 'admin';
+          role = "admin";
         } else if (randNum <= 65) {
           visitor = `visitor4@${accString}.com`;
-          role = 'user';
+          role = "user";
         } else if (randNum <= 80) {
           visitor = `visitor7@${accString}.com`;
-          role = 'user';
+          role = "user";
         } else if (randNum <= 90) {
           visitor = `visitor5@${accString}.com`;
-          role = 'user';
+          role = "user";
         } else if (randNum <= 95) {
           visitor = `visitor3@${accString}.com`;
-          role = 'read-only';
+          role = "read-only";
         } else {
           visitor = `visitor2@${accString}.com`;
-          role = 'read-only';
+          role = "read-only";
         }
 
         return visitor;
@@ -466,8 +466,8 @@
         const prevDay = prevDate.getDate();
         const prevYear = prevDate.getFullYear() - 2000;
 
-        const prevDateDisplay = `${prevMonth < 10 ? '0' : ''}${prevMonth}${
-          prevDay < 10 ? '0' : ''
+        const prevDateDisplay = `${prevMonth < 10 ? "0" : ""}${prevMonth}${
+          prevDay < 10 ? "0" : ""
         }${prevDay}${prevYear}`;
 
         calcDate = prevDateDisplay;
@@ -478,14 +478,14 @@
       // Override visitor info with url params if specified
       account_id = urlAccount || account_id;
       visitor = `${
-        urlVisitor || visitor.slice(0, visitor.indexOf('@'))
-      }@${account_id.replace(/\s/g, '')}.com`;
+        urlVisitor || visitor.slice(0, visitor.indexOf("@"))
+      }@${account_id.replace(/\s/g, "")}.com`;
       role = urlRole || role;
 
       // Store visitor info on global for use in avatar drop down
       window.userInfo = {
         account: account_id,
-        visitor: visitor.slice(0, visitor.indexOf('@')), //  ->visitor9<-@account.com
+        visitor: visitor.slice(0, visitor.indexOf("@")), //  ->visitor9<-@account.com
         visitorId: visitor,
         role: role,
       };
@@ -497,34 +497,41 @@
             var v, w, x, y, z;
             o = p[d] = p[d] || {};
             o._q = [];
-            v = ['initializes', 'identify', 'updateOptions', 'pageLoad'];
+            v = [
+              "initialize",
+              "identify",
+              "updateOptions",
+              "pageLoad",
+              "track",
+              "trackAgent",
+            ];
             for (w = 0, x = v.length; w < x; ++w)
               (function (m) {
                 o[m] =
                   o[m] ||
                   function () {
-                    o._q[m === v[0] ? 'unshift' : 'push'](
+                    o._q[m === v[0] ? "unshift" : "push"](
                       [m].concat([].slice.call(arguments, 0))
                     );
                   };
               })(v[w]);
             y = e.createElement(n);
             y.async = !0;
-            y.src = 'https://cdn.pendo.io/agent/static/' + apiKey + '/pendo.js';
+            y.src = "https://cdn.pendo.io/agent/static/" + apiKey + "/pendo.js";
             z = e.getElementsByTagName(n)[0];
             z.parentNode.insertBefore(y, z);
-          })(window, document, 'script', 'pendo');
+          })(window, document, "script", "pendo");
 
           pendo.initialize({
             visitor: {
-              id: visitor || 'VISITOR-UNIQUE-ID',
-              role: role || 'user',
+              id: visitor || "VISITOR-UNIQUE-ID",
+              role: role || "user",
             },
             account: {
-              id: account_id || 'ACCOUNT-UNIQUE-ID',
+              id: account_id || "ACCOUNT-UNIQUE-ID",
             },
           });
-        })('YOUR-PENDO-API-KEY-HERE');
+        })("88fb971d-b8c5-4af2-86bb-62dae7ba745a");
       }
     </script>
     <title>pizzaCRM</title>
